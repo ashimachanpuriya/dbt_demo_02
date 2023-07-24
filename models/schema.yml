@@ -8,6 +8,22 @@ models:
           - unique
           - not_null
 
+  - name: test_person
+    columns:
+      - name: PersonID
+        tests:
+          - unique
+          - relationships:  
+              to: ref('test_employee')  
+              field: EMPID
+
+  - name: test_employee
+    columns:
+      - name: EMPID
+        tests:
+          - unique:
+              severity: error
+              warn_if: ">1"
 
 
 
